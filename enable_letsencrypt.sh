@@ -15,11 +15,11 @@ if ! command -v certbot &> /dev/null; then
 fi
 
 # Obtain SSL certificate
-sudo certbot --nginx --nginx-server-root "$NGINX_CONF_PATH" -d "$DOMAIN" --non-interactive --agree-tos -m "$EMAIL"
+sudo certbot certonly --standalone -d "$DOMAIN" --non-interactive --agree-tos -m "$EMAIL"
 
 # Copy SSL certificate to the project folder to mount to nginx docker
-sudo cp /etc/letsencrypt/live/dne.linagora.com/fullchain.pem /home/ubuntu/projects/webui/certbot/
-sudo cp /etc/letsencrypt/live/dne.linagora.com/privkey.pem /home/ubuntu/projects/webui/certbot/
+sudo cp /etc/letsencrypt/live/$DOMAIN/fullchain.pem /home/ubuntu/projects/webui/certbot/
+sudo cp /etc/letsencrypt/live/$DOMAIN/privkey.pem /home/ubuntu/projects/webui/certbot/
 
 
 echo "Let's Encrypt SSL certificate has been installed"

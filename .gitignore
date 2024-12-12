@@ -2,4 +2,4 @@ certbot/*
 .venv/
 ssl/*
 /conf.d/*
-.env*
+.env

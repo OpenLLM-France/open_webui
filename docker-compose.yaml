@@ -6,15 +6,13 @@ services:
     volumes:
       - open-webui:/app/backend/data
     environment:
-      - ENABLE_OLLAMA_API=False
-      - USE_CUDA_DOCKER=True
-      - OPENAI_API_BASE_URL
-      - OPENAI_API_KEY
       - ENABLE_RAG_WEB_SEARCH=True
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
       - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
       - SEARXNG_QUERY_URL=http://searxng:8080/search?q=<query>
+    env_file:
+      - .env
     deploy:
       resources:
         reservations:
@@ -31,8 +29,6 @@ services:
       - ./certbot:/etc/nginx/certbot
     depends_on:
       - openwebui
-    extra_hosts:
-      - dne.linagora.com:163.114.159.68
 
   searxng:
     image: searxng/searxng:latest
