@@ -4,8 +4,7 @@
 
 DOMAIN="demo-lucie.linagora.com"
 EMAIL="htagourti@linagora.com"
-NGINX_CONF_PATH="/home/ubuntu/projects/webui/conf.d"  # Path to your Nginx configuration folder
-
+#
 
 # Install Certbot if not installed
 if ! command -v certbot &> /dev/null; then
